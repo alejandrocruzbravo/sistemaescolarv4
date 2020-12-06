@@ -1,0 +1,86 @@
+MANUAL DE INSTALACIÓN DEL SISTEMA
+
+1. ABRIR XAMPP
+2. INICIAR SERVICIOS DE APACHE
+3. ABRIR MYSQL WORKBENCH
+4. CREAR UNA CONEXIÓN AL SERVIDOR SQL
+5. ACCEDER A ESA CONEXIÓN
+6. COPIAR Y PEGAR LAS CONSULTAS EN EL QUERY
+7. RECARGAR LA CONEXIÓN 
+8. ABRIR EL NAVEGADOR DE SU PREFERENCIA
+9. INGRESAR EN LA BARRA DE TAREAS LA DIRECCIÓN: localhost/sistemaescolarv4/index.php
+10. INICIAR SESIÓN COMO PROFESOR PARA VER LAS FUNCIONALIDADES DEL SISTEMA (si es otra cuenta no podrá comprobar las funciones)
+	email: profesor
+	password: profesor
+11. PROBAR LAS FUNCIONES DEL SISTEMA
+
+
+----FIN----
+
+QUERY
+
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema SchoolSystem
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema SchoolSystem
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `SchoolSystem` DEFAULT CHARACTER SET utf8 ;
+USE `SchoolSystem` ;
+
+-- -----------------------------------------------------
+-- Table `SchoolSystem`.`usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SchoolSystem`.`usuarios` (
+  `idusuarios` INT NOT NULL AUTO_INCREMENT,
+  `nombreusuario` VARCHAR(45) NULL,
+  `password` VARCHAR(45) NULL,
+  PRIMARY KEY (`idusuarios`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SchoolSystem`.`alumnos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SchoolSystem`.`alumnos` (
+  `idalumno` INT NOT NULL,
+  `nombrealumno` VARCHAR(45) NULL,
+  `apellidoPat` VARCHAR(45) NULL,
+  `apellidoMat` VARCHAR(45) NULL,
+  `alumnoscol` VARCHAR(45) NULL,
+  PRIMARY KEY (`idalumnos`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `SchoolSystem`.`calificaciones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `SchoolSystem`.`calificaciones` (
+  `idcalificaciones` INT NOT NULL,
+  `idalumnos` INT NOT NULL,
+  `calificacionEsp` INT NULL,
+  `calificacionMat` INT NULL,
+  `calificacionHist` INT NULL,
+  PRIMARY KEY (`idcalificaciones`),
+  INDEX `idalumnos_idx` (`idalumnos` ASC) VISIBLE,
+  CONSTRAINT `idalumnos`
+    FOREIGN KEY (`idalumnos`)
+    REFERENCES `SchoolSystem`.`alumnos` (`idalumnos`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+INSERT INTO `schoolsystem`.`usuarios` (`idusuarios`, `nombreusuario`, `password`) VALUES ('1', 'profesor', 'profesor');
+INSERT INTO `schoolsystem`.`usuarios` (`idusuarios`, `nombreusuario`, `password`) VALUES ('2', 'alumno', 'alumno');
