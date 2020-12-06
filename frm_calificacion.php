@@ -19,8 +19,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/jquery-mobile/js/jquery.mobile.js"></script>
     <link href="node_modules/bulma/css/bulma.min.css" rel="stylesheet">
     <title>Registro de calificaciones - Agregar calificación</title>
 </head>
