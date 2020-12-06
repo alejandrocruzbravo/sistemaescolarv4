@@ -7,7 +7,7 @@ $capsule = new Capsule;
 $capsule->addConnection([
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'sistema_escolar',
+    'database'  => 'schoolsystem',
     'username'  => 'root',
     'password'  => 'pumasbravo00',
     'charset'   => 'utf8',
